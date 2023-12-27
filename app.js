@@ -1,21 +1,18 @@
-const express = require('express');
-const cors = require('cors');
-const BlindSignature = require('./utils/rsablind');
+const express = require("express");
+const cors = require("cors");
+const BlindSignature = require("./utils/rsablind");
 const app = express();
 
 app.use(cors());
 app.use(express.json());
-
-// const EXP_PRIV = 5;
-// const MOD = 14;
 
 const central_authority = {
   key: BlindSignature.importKeyPairFromFile(),
   blinded_message: null,
 };
 
-app.get('/', (req, res) => {
-  res.send('Hello, Andrii!');
+app.get("/", (req, res) => {
+  res.send("Hello!");
 });
 
 app.get("/get_key_data", async (req, res) => {
@@ -38,5 +35,5 @@ app.post("/sign_blinded", async (req, res) => {
 });
 
 app.listen(3000, () => {
-  console.log('Server listening on port 3000');
+  console.log("Server listening on port 3000");
 });
